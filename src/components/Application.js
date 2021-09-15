@@ -5,8 +5,9 @@ import "components/Application.scss";
 import DayList from 'components/DayList';
 import 'components/Appointment';
 import Appointment from "components/Appointment";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
-const appointments = [
+const appointmentsArr = [
   {
     id: 1,
     time: "12pm",
@@ -53,17 +54,30 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  const [days, setDays] = useState([]);
-  const [day, setDay] = useState('Monday');
+  const [state, setState] = useState({
+    day: 'Monday',
+    days: [],
+    appointments: appointmentsArr,
+    interviewers: []
+  });
+  const setDay = day => setState({ ...state, day });
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   useEffect(() => {
-    axios.get("http://localhost:8001/api/days")
-      .then((response) => {
-        setDays(response.data);
-      })
+    Promise.all([
+      axios.get("http://localhost:8001/api/days"),
+      axios.get("http://localhost:8001/api/appointments"),
+      axios.get("http://localhost:8001/api/interviewers")
+    ]).then((all) => {
+      console.log('interviewers: ', all[2].data)
+      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
+    })
   }, [])
 
-  const iterateAppointments = appointments.map(appointment => {
+  const iterateAppointments = dailyAppointments.map(appointment => {
+    // const interview = getInterview(state, appointment.interview)
+    // console.log('getInterview: ', getInterview(state, appointment.interview))
+    console.log('map: ', appointment.interview)
     return (
       <Appointment
         key={appointment.id}
@@ -82,8 +96,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            day={day}
+            days={state.days}
+            day={state.day}
             setDay={setDay}
           />
         </nav>
