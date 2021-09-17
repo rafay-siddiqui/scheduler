@@ -88,6 +88,15 @@ export default function Application(props) {
   const iterateAppointments = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview)
     console.log(interview)
+
+    function bookInterview(id, interview) {
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+      console.log(id, interview);
+    }
+
     return (
       <Appointment
         key={appointment.id}
@@ -95,6 +104,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
       />)
   })
 
