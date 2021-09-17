@@ -5,7 +5,7 @@ import "components/Application.scss";
 import DayList from 'components/DayList';
 import 'components/Appointment';
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 const appointmentsArr = [
   {
@@ -73,6 +73,7 @@ export default function Application(props) {
   });
   const setDay = day => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   useEffect(() => {
     Promise.all([
@@ -93,6 +94,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={dailyInterviewers}
       />)
   })
 
