@@ -19,7 +19,7 @@ export function getAppointmentsForDay(state, day) {
 };
 
 export function getInterview(state, interview) {
-  if (interview) {
+  if (interview && typeof interview.interviewer === 'number') {
     interview.interviewer = state.interviewers[interview.interviewer]
   }
   return interview;
