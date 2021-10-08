@@ -83,7 +83,7 @@ export default function Application(props) {
     ]).then((all) => {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
     })
-  }, [state.day])
+  }, [state.day, state.appointments])
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -94,15 +94,15 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
+
+    return Promise.resolve(
+      axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+    ).then((res) => {
+      setState({
+        ...state,
+        appointments
+      })
     })
-    // console.log('pre axios: ', appointment)
-    // axios.put(`http://localhost:8001/api/appointments/1`, appointment)
-    //   .then(response =>
-    //     console.log(response)
-    //   )
   }
 
   const iterateAppointments = dailyAppointments.map(appointment => {

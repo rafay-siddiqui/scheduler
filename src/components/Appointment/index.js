@@ -20,8 +20,8 @@ export default function Appointment(props) {
       interviewer
     };
     props.bookInterview(props.id, interview)
-      // .then(response => transition(SHOW));
-    transition(SHOW);
+      .then(response => transition(SHOW));
+    console.log('is this a promise mane?', props.bookInterview(props.id, interview) instanceof Promise);
   }
 
   return (
