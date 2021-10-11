@@ -21,6 +21,7 @@ export default function useApplicationData() {
     ]).then((all) => {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
     })
+    //Had this hook depend on state.day and state.appointments so that the spots are automatically updated based on data from the scheduler api database
   }, [state.day, state.appointments])
 
   function bookInterview(id, interview) {
