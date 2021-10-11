@@ -1,5 +1,11 @@
 # Interview Scheduler
 
+Interview Scheduler is a single-page React application that uses persistent data through an API server to manage appointment bookings.
+
+## Final Product
+
+![Scheduler](./docs/Scheduler-Image.png)
+
 ## Setup
 
 Install dependencies with `npm install`.
