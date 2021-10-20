@@ -1,21 +1,27 @@
-export function getAppointmentsForDay(state, day) {
-  let dayAppointments = [];
+function getElementsForDay(state, day, component) {
+  let dayElements = [];
   for (const obj in state.days) {
     if (state.days[obj].name === day) {
-      dayAppointments = state.days[obj].appointments
+      dayElements = state.days[obj][component]
     }
   }
 
-  let appointmentArr = [];
-  dayAppointments.forEach((appointment) => {
-    appointmentArr.push(state.appointments[appointment]);
+  let elementsArr = [];
+  dayElements.forEach((element) => {
+    elementsArr.push(state[component][element]);
   })
 
-  if (appointmentArr.length === 0) {
+  if (elementsArr.length === 0) {
     return [];
   } else {
-    return appointmentArr;
+    return elementsArr;
   }
+}
+
+export function getAppointmentsForDay(state, day) {
+
+  return getElementsForDay(state, day, "appointments")
+
 };
 
 export function getInterview(state, interview) {
@@ -26,21 +32,7 @@ export function getInterview(state, interview) {
 };
 
 export function getInterviewersForDay(state, day) {
-  let dayInterviewers = [];
-  for (const obj in state.days) {
-    if (state.days[obj].name === day) {
-      dayInterviewers = state.days[obj].interviewers
-    }
-  }
 
-  let interviewersArr = [];
-  dayInterviewers.forEach((interview) => {
-    interviewersArr.push(state.interviewers[interview]);
-  })
+  return getElementsForDay(state, day, "interviewers")
 
-  if (interviewersArr.length === 0) {
-    return [];
-  } else {
-    return interviewersArr;
-  }
 };
