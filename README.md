@@ -14,9 +14,9 @@ Interview Scheduler is a single-page React application that uses persistent data
 
 ## Setup
 
-##### Install dependencies with `npm install`.
-##### Get database api at 'https://github.com/lighthouse-labs/scheduler-api'.
-##### Run & Open Webpack Development Server at desired port (:8080 by default).
+#### Install dependencies with `npm install`.
+#### Get database api at 'https://github.com/lighthouse-labs/scheduler-api'.
+#### Run & Open Webpack Development Server at desired port (:8080 by default).
 
 ## Key Scripts
 
