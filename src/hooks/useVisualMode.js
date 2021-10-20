@@ -5,17 +5,18 @@ export default function useVisualMode(intial) {
   const [history, setHistory] = useState([intial]);
 
   const editHistory = () => {
-    const array = history;
+    const array = [...history];
     (history.length !== 1 && array.pop());
     setHistory(array);
   }
-  
+
   const transition = (next, replace = false) => {
     setMode(next)
     if (replace) {
       editHistory();
-    };
-    setHistory(prev => [...prev, next])
+    } else {
+      setHistory(prev => [...prev, next])
+    }
   }
 
   const back = () => {
