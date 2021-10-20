@@ -6,10 +6,6 @@ import InterviewerListItem from 'components/InterviewerListItem';
 
 export default function InterviewerList(props) {
 
-  // InterviewerList.propTypes = {
-  //   interviewers: PropTypes.array.isRequired
-  // };
-
   const iterateInterviewers = props.interviewers.map(interviewer => {
     return (
       <InterviewerListItem
@@ -32,6 +28,7 @@ export default function InterviewerList(props) {
   );
 }
 
+//Ensure an array is passed for interviewers
 InterviewerList.propTypes = {
   interviewers: PropTypes.array.isRequired
 };

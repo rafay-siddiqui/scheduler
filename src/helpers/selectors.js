@@ -1,3 +1,4 @@
+//Function serves to fill up the arrays for a day's appointments and interviewers
 function getElementsForDay(state, day, component) {
   let dayElements = [];
   for (const obj in state.days) {
@@ -25,6 +26,7 @@ export function getAppointmentsForDay(state, day) {
 };
 
 export function getInterview(state, interview) {
+  //Avoid undefined error by adding condition for selected interviewer
   if (interview && typeof interview.interviewer === 'number') {
     interview.interviewer = state.interviewers[interview.interviewer]
   }

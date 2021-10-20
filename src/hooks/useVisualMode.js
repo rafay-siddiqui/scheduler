@@ -4,6 +4,8 @@ export default function useVisualMode(intial) {
   const [mode, setMode] = useState(intial);
   const [history, setHistory] = useState([intial]);
 
+
+  //Removes the most recent mode change from history via spread operator copy
   const editHistory = () => {
     const array = [...history];
     (history.length !== 1 && array.pop());

@@ -179,6 +179,7 @@ storiesOf("Appointment", module)
       onClose={action('onClose')}
     />
   ))
+  //Form with prepopulated data
   .add("Edit Form", () => (
     <Form
       name='Michael Jackson'
@@ -188,6 +189,7 @@ storiesOf("Appointment", module)
       onCancel={action('onCancel')}
     />
   ))
+  //Form with no prior data
   .add("Create Form", () => (
     <Form
       interviewers={interviewers}

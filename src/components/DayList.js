@@ -7,6 +7,7 @@ export default function DayList(props) {
       <DayListItem
         key={day.id}
         name={day.name}
+        //Pass through spots remaining from api to DayListItem through props
         spots={day.spots}
         selected={props.day === day.name}
         setDay={props.setDay}

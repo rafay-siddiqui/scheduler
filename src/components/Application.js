@@ -9,8 +9,10 @@ import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
 
+  //Import state manipulation functions
   const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
 
+  //Populate appointment component with API data
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
@@ -40,6 +42,7 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
+          //Pass through spots remaining from API to DayList
             days={state.days}
             day={state.day}
             setDay={setDay}

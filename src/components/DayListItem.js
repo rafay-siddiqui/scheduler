@@ -12,6 +12,7 @@ export default function DayListItem(props) {
     if (props.spots < 1) {
       return <h3>no spots remaining</h3>;
     } else if (props.spots === 1) {
+      //Update spots based on API data passed through props
       return <h3>{props.spots} spot remaining</h3>;
     } else if (props.spots > 1) {
       return <h3 className="text--light">{props.spots} spots remaining</h3>;
