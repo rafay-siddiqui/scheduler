@@ -8,9 +8,9 @@ Interview Scheduler is a single-page React application that uses persistent data
 
 ## Dependencies
 
-### React
-### Webpack, Axios, Babel
-### Testing: Storybook, Webpack Dev Server, Jest, Testing Library
+#### React
+#### Webpack, Axios, Babel
+#### Testing: Storybook, Webpack Dev Server, Jest, Testing Library
 
 ## Setup
 
